@@ -11,13 +11,18 @@ config_version=5
 [application]
 
 config/name="Minature Rotary Phone"
-run/main_scene="uid://dmi1o12psjnub"
+run/main_scene="uid://bg8kwwhoe8ijm"
 config/features=PackedStringArray("4.4")
 config/icon="res://behaviors/icon.png"
 
 [audio]
 
 buses/default_bus_layout="res://behaviors/default_bus_layout.tres"
+
+[autoload]
+
+XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
+XRToolsRumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
 
 [display]
 
@@ -39,7 +44,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 
 [filesystem]
 
