@@ -21,7 +21,6 @@
 
 [node name="SpineAnimator" type="Node" parent="."]
 script = ExtResource("10")
-bonePaths = [NodePath("../Boid"), NodePath("../Body"), NodePath("../Tail")]
 angular_damping = 5.0
 
 [node name="Tail" type="Node3D" parent="."]

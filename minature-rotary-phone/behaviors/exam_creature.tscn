@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://41h4w01vjpdq"]
+[gd_scene load_steps=19 format=3 uid="uid://41h4w01vjpdq"]
 
 [ext_resource type="Script" uid="uid://bb475dsswmiyu" path="res://behaviors/spine_animator.gd" id="2"]
 [ext_resource type="Script" uid="uid://s5pb8njisohn" path="res://behaviors/avoidance.gd" id="3"]
 [ext_resource type="Script" uid="uid://bqb47mif0r5vt" path="res://behaviors/noise_wander.gd" id="4"]
 [ext_resource type="Script" uid="uid://cqk70j8jant4u" path="res://behaviors/player_steering.gd" id="5"]
-[ext_resource type="Script" uid="uid://di08ea5kveqbp" path="res://behaviors/Rotate.gd" id="6"]
 [ext_resource type="Script" uid="uid://bg8s6cu2yyuok" path="res://behaviors/CreatureController.gd" id="7"]
 [ext_resource type="Script" uid="uid://ci8facjqq07ft" path="res://behaviors/constrain.gd" id="8"]
 [ext_resource type="Script" uid="uid://bctpwo8cerrgq" path="res://behaviors/harmonic.gd" id="10"]
@@ -127,20 +126,6 @@ disabled = true
 
 [node name="Pod" type="Area3D" parent="creature/tail"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -2)
-
-[node name="Dodecahedron" parent="creature/tail/Pod"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.210667, 0)
-script = ExtResource("6")
-speed = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="creature/tail/Pod"]
 shape = SubResource("17")
