@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bg8kwwhoe8ijm"]
+[gd_scene load_steps=16 format=3 uid="uid://bg8kwwhoe8ijm"]
 
 [ext_resource type="Script" uid="uid://cvt0wb5xw0yds" path="res://Assignment/Scripts/main.gd" id="1_xcubd"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_6mln3"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bcjp8kcgde4cs" path="res://scene_anchor.tscn" id="8_8ihao"]
 [ext_resource type="AudioStream" uid="uid://b5ijhws0lc0go" path="res://Assignment/Assets/daytime-swamp-soundscape-252295.mp3" id="8_odm5u"]
 [ext_resource type="PackedScene" uid="uid://dd8ncgg8xtfpa" path="res://Assignment/Scenes/fly.tscn" id="10_n36ux"]
+[ext_resource type="PackedScene" uid="uid://1nsh7s33cxu4" path="res://Assignment/Scenes/food_plate.tscn" id="12_6hsic"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6mln3"]
 
@@ -59,7 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 0.999709, 0.0241356, 0, -0.0241356, 0.999709
 shape = SubResource("CapsuleShape3D_odm5u")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 2.98023e-08, 1, 0, -5.195, 2.24633)
+transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08, 1, 0, -4.13383, 2.81953)
 
 [node name="AudioListener3D" type="AudioListener3D" parent="XROrigin3D/XRCamera3D"]
 
@@ -91,5 +92,14 @@ max_force = 10
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 3.04726, 0.296744, 0.510279)
 max_speed = 1.0
 max_force = 10
+
+[node name="FoodPlate" parent="." instance=ExtResource("12_6hsic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="FoodPlate2" parent="." instance=ExtResource("12_6hsic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32422, 0, -1.47062)
+
+[node name="FoodPlate3" parent="." instance=ExtResource("12_6hsic")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2883, 0, -1.47062)
 
 [connection signal="openxr_fb_scene_data_missing" from="XROrigin3D/OpenXRFbSceneManager" to="." method="_on_open_xr_fb_scene_manager_openxr_fb_scene_data_missing"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dd8ncgg8xtfpa"]
+[gd_scene load_steps=15 format=3 uid="uid://dd8ncgg8xtfpa"]
 
 [ext_resource type="Script" uid="uid://cmw6n17mebkcx" path="res://behaviors/boid.gd" id="1_shvp3"]
 [ext_resource type="Script" uid="uid://bqb47mif0r5vt" path="res://behaviors/noise_wander.gd" id="2_dpnrv"]
@@ -79,10 +79,13 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xhknk"]
-radius = 0.02
+radius = 0.0286562
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qah4a"]
-radius = 5.0
+radius = 5.1751
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wcb7v"]
+radius = 0.0359291
 
 [node name="Fly" type="CharacterBody3D" groups=["Fly"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
@@ -152,4 +155,10 @@ metadata/_custom_type_script = "uid://c2d7mphmtn1jv"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FlyArea"]
 shape = SubResource("SphereShape3D_qah4a")
 
+[node name="Eat" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Eat"]
+shape = SubResource("SphereShape3D_wcb7v")
+
 [connection signal="body_entered" from="FlyArea" to="." method="_on_fly_area_body_entered"]
+[connection signal="body_entered" from="Eat" to="." method="_on_eat_body_entered"]
