@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bg8kwwhoe8ijm"]
+[gd_scene load_steps=14 format=3 uid="uid://bg8kwwhoe8ijm"]
 
 [ext_resource type="Script" uid="uid://cvt0wb5xw0yds" path="res://Assignment/Scripts/main.gd" id="1_xcubd"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_6mln3"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dr56cp66jdbii" path="res://Assignment/Scenes/frog.tscn" id="5_6mln3"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_tplg2"]
 [ext_resource type="AudioStream" uid="uid://b5ijhws0lc0go" path="res://Assignment/Assets/daytime-swamp-soundscape-252295.mp3" id="8_odm5u"]
+[ext_resource type="PackedScene" uid="uid://dd8ncgg8xtfpa" path="res://Assignment/Scenes/fly.tscn" id="10_n36ux"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6mln3"]
 
@@ -68,3 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43567, -0.874108, -3.48199
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_odm5u")
 volume_db = -20.991
+autoplay = true
+
+[node name="Fly" parent="." instance=ExtResource("10_n36ux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28755, 0.140121, -2.4267)

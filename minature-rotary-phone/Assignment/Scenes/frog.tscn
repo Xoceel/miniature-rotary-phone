@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dr56cp66jdbii"]
+[gd_scene load_steps=21 format=3 uid="uid://dr56cp66jdbii"]
 
 [ext_resource type="Script" uid="uid://cmw6n17mebkcx" path="res://behaviors/boid.gd" id="1_1cy5e"]
 [ext_resource type="Material" uid="uid://qv2nqhi7lup6" path="res://Assignment/Assets/froggreen.tres" id="1_q2y0b"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cbrc3unamm5q3" path="res://behaviors/Flee.gd" id="4_vq25p"]
 [ext_resource type="Script" uid="uid://s5pb8njisohn" path="res://behaviors/avoidance.gd" id="5_jnda0"]
 [ext_resource type="Script" uid="uid://belf065sppvp4" path="res://Assignment/Scenes/jumpbehaviour.gd" id="6_lrra3"]
+[ext_resource type="Script" uid="uid://wtnjsmv3y8y2" path="res://behaviors/pursue.gd" id="7_626hw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ev6i7"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -50,7 +51,7 @@ text = ")"
 albedo_color = Color(0.283771, 0.368124, 0.11209, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1cy5e"]
-radius = 1.49646
+radius = 3.35799
 
 [node name="Frog" type="CharacterBody3D" groups=["Frog"]]
 slide_on_ceiling = false
@@ -212,6 +213,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1cy5e")
 script = ExtResource("3_626hw")
 radius = 5
 amplitude = 80
+enabled = false
 metadata/_custom_type_script = "uid://bqb47mif0r5vt"
 
 [node name="Flee" type="Node" parent="."]
@@ -222,6 +224,7 @@ metadata/_custom_type_script = "uid://cbrc3unamm5q3"
 
 [node name="Avoidance" type="Node" parent="."]
 script = ExtResource("5_jnda0")
+enabled = false
 metadata/_custom_type_script = "uid://s5pb8njisohn"
 
 [node name="Jump" type="Node" parent="."]
@@ -229,6 +232,11 @@ script = ExtResource("6_lrra3")
 jump_strength = 100
 jump_interval = 3.0
 metadata/_custom_type_script = "uid://belf065sppvp4"
+
+[node name="Pursue" type="Node" parent="."]
+script = ExtResource("7_626hw")
+enabled = false
+metadata/_custom_type_script = "uid://wtnjsmv3y8y2"
 
 [node name="Area3D" type="Area3D" parent="."]
 
