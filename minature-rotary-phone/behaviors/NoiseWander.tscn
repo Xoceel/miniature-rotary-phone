@@ -71,6 +71,7 @@ skeleton = NodePath("../../..")
 
 [node name="NoiseWander" type="Node" parent="creature/boid"]
 script = ExtResource("4")
+axis = 1
 
 [node name="Node3D" type="Node3D" parent="."]
 

@@ -45,7 +45,7 @@ func _ready():
 	else:
 		# We couldn't start OpenXR.
 		print("OpenXR not instantiated!")
-		get_tree().quit()
+		#get_tree().quit()
 
 # Handle OpenXR session ready
 func _on_openxr_session_begun() -> void:
@@ -130,3 +130,7 @@ func switch_to_ar() -> bool:
 	environment.background_color = Color(0.0, 0.0, 0.0, 0.0)
 	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	return true
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	pass # Replace with function body.

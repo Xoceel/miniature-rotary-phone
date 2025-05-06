@@ -8,7 +8,7 @@ class_name Boid extends CharacterBody3D
 @export var max_speed: float = 10.0
 
 var behaviors = [] 
-@export var max_force = 10
+@export var max_force = 100
 @export var banking = 0.1
 @export var damping = 0.1
 
@@ -17,7 +17,7 @@ var behaviors = []
 
 var count_neighbors = false
 var neighbors = [] 
-
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var school = null
 var new_force = Vector3.ZERO
 var should_calculate = false
@@ -126,12 +126,13 @@ func _ready():
 		if child.has_method("calculate"):
 			behaviors.push_back(child)
 			child.set_process(child.enabled) 
-	# enable_all(false)
-	
+
+
 func set_enabled_all(enabled):
 	for i in behaviors.size():
 		behaviors[i].enabled = enabled
-		
+
+
 func update_weights(weights):
 	for behavior in weights:
 		var b = get_node(behavior)
@@ -156,7 +157,6 @@ func calculate():
 	if draw_gizmos:
 		DebugDraw2D.set_text(name, behaviors_active)
 	return force_acc
-
 
 func _process(delta):
 	should_calculate = true
@@ -189,9 +189,20 @@ func _physics_process(delta):
 			vel -= vel * delta * damping
 			
 			set_velocity(vel)
+			
+			if not is_on_floor():
+				velocity.y -= gravity
+			
 			move_and_slide()
 			
-			# Implement Banking as described:
-			# https://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/
-			var temp_up = global_transform.basis.y.lerp(Vector3.UP + (acceleration * banking), delta * 5.0)
-			look_at(global_transform.origin - vel.normalized(), temp_up)
+			#var temp_up = global_transform.basis.y.lerp(Vector3.UP + (acceleration * banking), delta * 5.0)
+			look_at(global_transform.origin - vel.normalized(), Vector3.UP)
+			global_transform.basis.y = Vector3.UP
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if self.is_in_group("Frog"):
+		if body.is_in_group("player_body"):
+			var flee_behaviour = find_child("Flee")
+			flee_behaviour.enemy_path = body
+			flee_behaviour.enabled = true

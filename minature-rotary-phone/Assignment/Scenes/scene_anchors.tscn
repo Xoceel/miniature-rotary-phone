@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dwy5dhtewuiji"]
 
-[ext_resource type="Script" uid="uid://dmib45heehr3d" path="res://static_body_3d.gd" id="1_pebu6"]
+[ext_resource type="Script" uid="uid://duiyhb4m6gspu" path="res://Assignment/Scripts/scene_anchors.gd" id="1_pebu6"]
 
 [node name="SceneAnchors" type="StaticBody3D"]
 script = ExtResource("1_pebu6")
