@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://1nsh7s33cxu4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vknva"]
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ltslj"]
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ssya"]
+albedo_color = Color(1, 0.341176, 0.203922, 0.266667)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8sm86"]
+material = SubResource("StandardMaterial3D_4ssya")
+radius = 0.1
+height = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vpfre"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.3
+
+[node name="FoodPlate" type="StaticBody3D" groups=["Food"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_vknva")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("CylinderMesh_ltslj")
+skeleton = NodePath("../..")
+
+[node name="FoodStick" type="Node3D" parent="Node3D"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D/FoodStick"]
+transform = Transform3D(0.202548, -0.979272, 0, 0.979272, 0.202548, 0, 0, 0, 1, 0, 0.212686, 0)
+mesh = SubResource("CapsuleMesh_8sm86")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/FoodStick"]
+transform = Transform3D(-0.278153, 0.960537, 0, -0.960537, -0.278153, 0, 0, 0, 1, 0.236642, 0.150597, 0)
+mesh = SubResource("CylinderMesh_vpfre")
+skeleton = NodePath("../..")
+
+[node name="FoodStick2" type="Node3D" parent="Node3D"]
+transform = Transform3D(-0.947417, 0, -0.320001, 0, 1, 0, 0.320001, 0, -0.947417, -0.0320839, 0.0110874, 0.0988166)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D/FoodStick2"]
+transform = Transform3D(0.202548, -0.979272, 0, 0.979272, 0.202548, 0, 0, 0, 1, 0, 0.212686, 0)
+mesh = SubResource("CapsuleMesh_8sm86")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/FoodStick2"]
+transform = Transform3D(-0.278153, 0.960537, 0, -0.960537, -0.278153, 0, 0, 0, 1, 0.236642, 0.150597, 0)
+mesh = SubResource("CylinderMesh_vpfre")
+skeleton = NodePath("../..")
+
+[node name="FoodStick3" type="Node3D" parent="Node3D"]
+transform = Transform3D(-0.947417, 0, -0.320001, 0, 1, 0, 0.320001, 0, -0.947417, 0.185195, -0.0333273, 0.238182)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D/FoodStick3"]
+transform = Transform3D(0.202548, -0.979272, 0, 0.979272, 0.202548, 0, 0, 0, 1, 0, 0.212686, 0)
+mesh = SubResource("CapsuleMesh_8sm86")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/FoodStick3"]
+transform = Transform3D(-0.278153, 0.960537, 0, -0.960537, -0.278153, 0, 0, 0, 1, 0.236642, 0.150597, 0)
+mesh = SubResource("CylinderMesh_vpfre")
+skeleton = NodePath("../..")
+
+[node name="FoodStick4" type="Node3D" parent="Node3D"]
+transform = Transform3D(0.179352, -1.13984e-08, -0.983785, -0.724626, -0.676362, -0.132105, -0.665395, 0.73657, -0.121307, 0.0201329, 0.449902, -0.26874)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D/FoodStick4"]
+transform = Transform3D(0.202548, -0.979272, 0, 0.979272, 0.202548, 0, 0, 0, 1, 0, 0.212686, 0)
+mesh = SubResource("CapsuleMesh_8sm86")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D/FoodStick4"]
+transform = Transform3D(-0.278153, 0.960537, 0, -0.960537, -0.278153, 0, 0, 0, 1, 0.236642, 0.150597, 0)
+mesh = SubResource("CylinderMesh_vpfre")
+skeleton = NodePath("../..")

@@ -4,8 +4,12 @@ signal focus_lost
 signal focus_gained
 signal pose_recentered
 
-@export var maximum_refresh_rate : int = 90
+@onready var open_xr_fb_scene_manager: OpenXRFbSceneManager = $XROrigin3D/OpenXRFbSceneManager
 
+const FROG = preload("res://Assignment/Scenes/frog.tscn")
+@export var maximum_refresh_rate : int = 90
+@export var frogs = 0
+@export var flies = 0
 @onready var viewport : Viewport = get_viewport()
 @onready var environment : Environment = $WorldEnvironment.environment
 
@@ -46,6 +50,17 @@ func _ready():
 		# We couldn't start OpenXR.
 		print("OpenXR not instantiated!")
 		#get_tree().quit()
+	
+	spawn_wildlife()
+
+func spawn_wildlife():
+	for i in range(frogs):
+		var frog = FROG.instantiate()
+		var x_rand = randf_range(-5, 5)
+		var z_rand = randf_range(-5, 5)
+		
+		frog.global_position = Vector3(x_rand, 0, z_rand)
+		add_child(frog)
 
 # Handle OpenXR session ready
 func _on_openxr_session_begun() -> void:
@@ -134,3 +149,7 @@ func switch_to_ar() -> bool:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	pass # Replace with function body.
+
+#
+#func _on_open_xr_fb_scene_manager_openxr_fb_scene_data_missing() -> void:
+	#open_xr_fb_scene_manager.request_scene_capture()

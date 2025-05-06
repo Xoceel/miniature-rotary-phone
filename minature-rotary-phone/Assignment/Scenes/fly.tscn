@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd8ncgg8xtfpa"]
+[gd_scene load_steps=14 format=3 uid="uid://dd8ncgg8xtfpa"]
 
 [ext_resource type="Script" uid="uid://cmw6n17mebkcx" path="res://behaviors/boid.gd" id="1_shvp3"]
 [ext_resource type="Script" uid="uid://bqb47mif0r5vt" path="res://behaviors/noise_wander.gd" id="2_dpnrv"]
 [ext_resource type="AudioStream" uid="uid://d18wu3swseyl1" path="res://Assignment/Assets/single-mosquito-buzz-69360.mp3" id="3_iwtog"]
 [ext_resource type="Script" uid="uid://baw56rnhj0aqm" path="res://behaviors/wander.gd" id="4_nv3a8"]
+[ext_resource type="Script" uid="uid://c2d7mphmtn1jv" path="res://behaviors/seek.gd" id="5_xhknk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpnrv"]
 albedo_color = Color(0.415686, 0, 0, 1)
@@ -80,10 +81,14 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_xhknk"]
 radius = 0.02
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_qah4a"]
+radius = 5.0
+
 [node name="Fly" type="CharacterBody3D" groups=["Fly"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 script = ExtResource("1_shvp3")
 max_speed = 5.0
+banking = 2.0
 draw_gizmos = false
 
 [node name="Body" type="Node3D" parent="."]
@@ -119,8 +124,9 @@ metadata/_custom_type_script = "uid://bqb47mif0r5vt"
 [node name="NoiseWander2" type="Node" parent="."]
 script = ExtResource("2_dpnrv")
 amplitude = 10
+distance = 0
 axis = 1
-draw_gizmos = false
+weight = 5.0
 metadata/_custom_type_script = "uid://bqb47mif0r5vt"
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
@@ -136,3 +142,14 @@ attenuation_filter_cutoff_hz = 5621.0
 [node name="Wander" type="Node" parent="."]
 script = ExtResource("4_nv3a8")
 metadata/_custom_type_script = "uid://baw56rnhj0aqm"
+
+[node name="Seek" type="Node" parent="."]
+script = ExtResource("5_xhknk")
+metadata/_custom_type_script = "uid://c2d7mphmtn1jv"
+
+[node name="FlyArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FlyArea"]
+shape = SubResource("SphereShape3D_qah4a")
+
+[connection signal="body_entered" from="FlyArea" to="." method="_on_fly_area_body_entered"]
