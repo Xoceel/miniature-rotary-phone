@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd8ncgg8xtfpa"]
+[gd_scene load_steps=12 format=3 uid="uid://dd8ncgg8xtfpa"]
 
 [ext_resource type="Script" uid="uid://cmw6n17mebkcx" path="res://behaviors/boid.gd" id="1_shvp3"]
 [ext_resource type="Script" uid="uid://bqb47mif0r5vt" path="res://behaviors/noise_wander.gd" id="2_dpnrv"]
+[ext_resource type="AudioStream" uid="uid://d18wu3swseyl1" path="res://Assignment/Assets/single-mosquito-buzz-69360.mp3" id="3_iwtog"]
+[ext_resource type="Script" uid="uid://baw56rnhj0aqm" path="res://behaviors/wander.gd" id="4_nv3a8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpnrv"]
 albedo_color = Color(0.415686, 0, 0, 1)
@@ -12,6 +14,33 @@ size = Vector3(0.01, 0.01, 0.01)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nv3a8"]
 size = Vector2(0.01, 0.01)
+
+[sub_resource type="Animation" id="Animation_dpnrv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("wing1:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("wing2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.785398, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_shvp3"]
 resource_name = "fly"
@@ -42,33 +71,6 @@ tracks/1/keys = {
 "values": [Vector3(-0.785398, 0, 0), Vector3(0.785398, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_dpnrv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("wing1:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.785398, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("wing2:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.785398, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iwtog"]
 _data = {
 &"RESET": SubResource("Animation_dpnrv"),
@@ -79,6 +81,7 @@ _data = {
 radius = 0.02
 
 [node name="Fly" type="CharacterBody3D" groups=["Fly"]]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 script = ExtResource("1_shvp3")
 max_speed = 5.0
 draw_gizmos = false
@@ -119,3 +122,17 @@ amplitude = 10
 axis = 1
 draw_gizmos = false
 metadata/_custom_type_script = "uid://bqb47mif0r5vt"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_iwtog")
+volume_db = -16.764
+unit_size = 1.0
+max_db = 1.571
+pitch_scale = 1.26
+autoplay = true
+max_distance = 19.85
+attenuation_filter_cutoff_hz = 5621.0
+
+[node name="Wander" type="Node" parent="."]
+script = ExtResource("4_nv3a8")
+metadata/_custom_type_script = "uid://baw56rnhj0aqm"
