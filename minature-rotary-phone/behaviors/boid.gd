@@ -1,5 +1,5 @@
 class_name Boid extends CharacterBody3D
-
+@onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @export var mass = 1
 @export var force = Vector3.ZERO
 @export var acceleration = Vector3.ZERO
@@ -7,8 +7,10 @@ class_name Boid extends CharacterBody3D
 @export var speed:float
 @export var max_speed: float = 10.0
 
+signal spawn_flies
+
 var behaviors = [] 
-@export var max_force = 100
+@export var max_force = 1000
 @export var banking = 0.1
 @export var damping = 0.1
 
@@ -18,9 +20,11 @@ var behaviors = []
 var count_neighbors = false
 var neighbors = [] 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 var school = null
 var new_force = Vector3.ZERO
 var should_calculate = false
+var time = 0.0
 
 func draw_gizmos_recursive(dg):
 	draw_gizmos = dg
@@ -168,7 +172,7 @@ func _process(delta):
 			count_neighbors_partitioned()
 		else:
 			count_neighbors_simple()
-			
+	
 func _physics_process(delta):
 	# pause = true
 	# lerp in the new forces
@@ -190,19 +194,52 @@ func _physics_process(delta):
 			
 			set_velocity(vel)
 			
-			if not is_on_floor():
+			if is_in_group("Frog"):
 				velocity.y -= gravity
 			
 			move_and_slide()
 			
-			#var temp_up = global_transform.basis.y.lerp(Vector3.UP + (acceleration * banking), delta * 5.0)
-			look_at(global_transform.origin - vel.normalized(), Vector3.UP)
-			global_transform.basis.y = Vector3.UP
+			var temp_up = global_transform.basis.y.lerp(Vector3.UP + (acceleration * banking), delta * 5.0)
+			look_at(global_transform.origin - vel.normalized(), temp_up)
+			rotation.x = 0
+			rotation.z = 0
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if self.is_in_group("Frog"):
+	if self.is_in_group("Frog"):	
 		if body.is_in_group("player_body"):
 			var flee_behaviour = find_child("Flee")
 			flee_behaviour.enemy_path = body
 			flee_behaviour.enabled = true
+		if body.is_in_group("Fly"):
+			var pursue_behaviour = find_child("Pursue")
+			pursue_behaviour.enemy_boid = body
+			pursue_behaviour.enemy_node_path = body.get_path()
+			pursue_behaviour.enabled = true
+			find_child("NoiseWander").enabled = false
+	if self.is_in_group("Fly"):
+		pass
+	else: speed = 1
+
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	find_child("NoiseWander").enabled = true
+
+
+func _on_area_3d_2_body_entered(body: Node3D) -> void:
+	if self.is_in_group("Frog"):	
+		if body.is_in_group("Fly"):
+			var pursue_behaviour = find_child("Pursue")
+			pursue_behaviour.enabled = false
+			pursue_behaviour.enemy_boid = null
+			pursue_behaviour.enemy_node_path = ""
+			audio_stream_player_3d.play()
+			body.queue_free()
+
+
+func _on_fly_area_body_entered(body: Node3D) -> void:
+	if self.is_in_group("Fly"):
+		if body.is_in_group("Food"):
+			var seek_behaviour = find_child("Seek")
+			seek_behaviour.target = body
+			seek_behaviour.enabled = true

@@ -21,7 +21,7 @@ func _ready():
 	# noise.period = 20.0
 	# noise.persistence = 0.8
 	
-	get_node("AudioStreamPlayer3D").pitch_scale = randf_range(0.5, 1.0)
+	#get_node("AudioStreamPlayer3D").pitch_scale = randf_range(0.5, 1.0)
 
 func destroy():
 	get_parent().remove_child(self)

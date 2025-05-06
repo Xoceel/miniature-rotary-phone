@@ -14,12 +14,16 @@ func _ready():
 		enemy_boid = get_node(enemy_node_path)
 		
 func _process(delta):
-	if draw_gizmos:
+	if draw_gizmos and enemy_boid:
 		DebugDraw3D.draw_arrow(boid.global_transform.origin, projected, Color.BISQUE, 0.1)
 
 func calculate():		
-	var to_enemy = enemy_boid.global_transform.origin - boid.global_transform.origin	
-	var dist = to_enemy.length()	
-	var time = dist / boid.max_speed	
-	projected = enemy_boid.global_transform.origin + enemy_boid.velocity * time	
-	return boid.seek_force(projected)
+	if enemy_boid and boid:
+		var to_enemy = enemy_boid.global_transform.origin - boid.global_transform.origin	
+		var dist = to_enemy.length()
+		var time = dist / boid.max_speed
+		projected = enemy_boid.global_transform.origin + enemy_boid.velocity * time	
+		return boid.seek_force(projected)
+	else: 
+		enemy_boid = null
+	return Vector3.ZERO

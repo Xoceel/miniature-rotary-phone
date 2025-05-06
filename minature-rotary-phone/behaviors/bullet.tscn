@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://co8hbh88amgo1"]
 
-[ext_resource type="Script" path="res://behaviors/Bullet.gd" id="2"]
+[ext_resource type="Script" uid="uid://2es3upt55jyt" path="res://behaviors/Bullet.gd" id="2"]
 
 [sub_resource type="BoxMesh" id="1"]
 
