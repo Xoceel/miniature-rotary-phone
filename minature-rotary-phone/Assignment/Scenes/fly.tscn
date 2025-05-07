@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://c2d7mphmtn1jv" path="res://behaviors/seek.gd" id="5_xhknk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpnrv"]
-albedo_color = Color(0.415686, 0, 0, 1)
+albedo_color = Color(0.905269, 2.31028e-06, 4.81307e-07, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_iwtog"]
 material = SubResource("StandardMaterial3D_dpnrv")

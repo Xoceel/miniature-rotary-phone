@@ -69,6 +69,9 @@ environment = SubResource("Environment_xcubd")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0240308, 0.999711, 0, -0.999711, 0.0240308, -0.360989, 4.22309, 0)
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.445471, 0.847386, 0.28895, -0.570241, 0.0197408, 0.82124, 0.690204, -0.53061, 0.492008, 8.3133, 15.0574, 12.7714)
+
 [node name="Frog" parent="." instance=ExtResource("5_6mln3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76786, 0.873945, 0.372701)
 
