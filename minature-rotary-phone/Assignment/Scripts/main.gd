@@ -4,6 +4,10 @@ signal focus_lost
 signal focus_gained
 signal pose_recentered
 
+@onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
+
+@onready var right_hand: XRToolsHand = $XROrigin3D/RightHand/RightHand
+const FLY = preload("res://Assignment/Scenes/fly.tscn")
 @onready var open_xr_fb_scene_manager: OpenXRFbSceneManager = $XROrigin3D/OpenXRFbSceneManager
 
 const FROG = preload("res://Assignment/Scenes/frog.tscn")
@@ -153,3 +157,12 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 #
 #func _on_open_xr_fb_scene_manager_openxr_fb_scene_data_missing() -> void:
 	#open_xr_fb_scene_manager.request_scene_capture()
+
+
+
+func _on_right_hand_button_pressed(name: String) -> void:
+	if name == "trigger_click":
+		var fly = FLY.instantiate()
+		fly.position = right_hand.global_position - Vector3(0, 0, 5)
+		add_child(fly)
+		audio_stream_player_3d.play()

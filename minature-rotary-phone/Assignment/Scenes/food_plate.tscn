@@ -20,6 +20,8 @@ bottom_radius = 0.04
 height = 0.3
 
 [node name="FoodPlate" type="StaticBody3D" groups=["Food"]]
+collision_layer = 0
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

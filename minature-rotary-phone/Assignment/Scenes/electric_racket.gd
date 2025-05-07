@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+ 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	audio_stream_player_3d.play()
 	body.queue_free()

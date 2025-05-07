@@ -582,7 +582,7 @@ _data = {
 }
 
 [node name="Frog" type="CharacterBody3D" groups=["Frog"]]
-collision_mask = 0
+collision_mask = 3
 slide_on_ceiling = false
 script = ExtResource("1_1cy5e")
 max_speed = 2.0
