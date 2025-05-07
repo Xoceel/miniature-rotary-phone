@@ -19,7 +19,7 @@ const FROG = preload("res://Assignment/Scenes/frog.tscn")
 
 var xr_interface : OpenXRInterface
 var xr_is_focussed = false
-
+var toggle = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	xr_interface = XRServer.find_interface("OpenXR")
@@ -123,13 +123,9 @@ func _on_openxr_focused_state() -> void:
 
 # Handle OpenXR stopping state
 func _on_openxr_stopping() -> void:
-	# Our session is being stopped.
 	print("OpenXR is stopping")
 
-# Handle OpenXR pose recentered signal
 func _on_openxr_pose_recentered() -> void:
-	# User recentered view, we have to react to this by recentering the view.
-	# This is game implementation dependent.
 	emit_signal("pose_recentered")
 	
 func switch_to_ar() -> bool:
@@ -150,19 +146,20 @@ func switch_to_ar() -> bool:
 	environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	return true
 
-
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	pass # Replace with function body.
-
-#
-#func _on_open_xr_fb_scene_manager_openxr_fb_scene_data_missing() -> void:
-	#open_xr_fb_scene_manager.request_scene_capture()
-
-
-
 func _on_right_hand_button_pressed(name: String) -> void:
 	if name == "trigger_click":
 		var fly = FLY.instantiate()
 		fly.position = right_hand.global_position - Vector3(0, 0, 5)
 		add_child(fly)
 		audio_stream_player_3d.play()
+	if name == "ax_button":
+		toggle = !toggle
+		toggle_all_boid_gizmos(toggle)
+
+func toggle_all_boid_gizmos(toggle: bool, node: Node = null):
+	if node == null:
+		node = get_tree().get_root()
+	for child in node.get_children():
+		if child is Boid:
+			child.draw_gizmos_recursive(toggle)
+		toggle_all_boid_gizmos(toggle, child) # recursive call
