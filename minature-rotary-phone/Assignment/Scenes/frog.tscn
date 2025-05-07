@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dr56cp66jdbii"]
+[gd_scene load_steps=28 format=3 uid="uid://dr56cp66jdbii"]
 
 [ext_resource type="Script" uid="uid://cmw6n17mebkcx" path="res://behaviors/boid.gd" id="1_1cy5e"]
 [ext_resource type="Material" uid="uid://qv2nqhi7lup6" path="res://Assignment/Assets/froggreen.tres" id="1_q2y0b"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://wtnjsmv3y8y2" path="res://behaviors/pursue.gd" id="7_626hw"]
 [ext_resource type="Script" uid="uid://belf065sppvp4" path="res://Assignment/Scenes/jumpbehaviour.gd" id="7_vq25p"]
 [ext_resource type="AudioStream" uid="uid://dcjrkn4xurqmm" path="res://Assignment/Assets/yoshi-mlem-sound-effect-hd.mp3" id="8_vq25p"]
+[ext_resource type="AudioStream" uid="uid://xfgx3s1h0qog" path="res://Assignment/Assets/frog-39142.mp3" id="9_jnda0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ev6i7"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -790,6 +791,13 @@ libraries = {
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_vq25p")
 volume_db = -22.722
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_jnda0")
+volume_db = -12.02
+
+[node name="CroakTimer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="body_entered" from="Mesh/Area3D2" to="." method="_on_area_3d_2_body_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

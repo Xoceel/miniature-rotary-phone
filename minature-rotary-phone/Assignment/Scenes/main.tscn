@@ -71,7 +71,7 @@ environment = SubResource("Environment_xcubd")
 transform = Transform3D(1, 0, 0, 0, 0.0240308, 0.999711, 0, -0.999711, 0.0240308, -0.360989, 4.22309, 0)
 
 [node name="Frog" parent="." instance=ExtResource("5_6mln3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.043, 0, 2.052)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.76786, 0, 0.372701)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_odm5u")
