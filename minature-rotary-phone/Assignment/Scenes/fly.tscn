@@ -89,6 +89,7 @@ radius = 0.0359291
 
 [node name="Fly" type="CharacterBody3D" groups=["Fly"]]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+collision_mask = 0
 script = ExtResource("1_shvp3")
 max_speed = 5.0
 banking = 2.0

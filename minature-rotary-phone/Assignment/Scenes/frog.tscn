@@ -582,6 +582,7 @@ _data = {
 }
 
 [node name="Frog" type="CharacterBody3D" groups=["Frog"]]
+collision_mask = 0
 slide_on_ceiling = false
 script = ExtResource("1_1cy5e")
 max_speed = 2.0
@@ -802,3 +803,4 @@ autostart = true
 [connection signal="body_entered" from="Mesh/Area3D2" to="." method="_on_area_3d_2_body_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="CroakTimer" to="." method="_on_croak_timer_timeout"]
