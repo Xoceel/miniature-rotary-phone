@@ -11,10 +11,10 @@ albedo_color = Color(0.905269, 2.31028e-06, 4.81307e-07, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_iwtog"]
 material = SubResource("StandardMaterial3D_dpnrv")
-size = Vector3(0.01, 0.01, 0.01)
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nv3a8"]
-size = Vector2(0.01, 0.01)
+size = Vector2(0.5, 0.5)
 
 [sub_resource type="Animation" id="Animation_dpnrv"]
 length = 0.001
@@ -82,13 +82,12 @@ _data = {
 radius = 0.0286562
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qah4a"]
-radius = 5.1751
+radius = 5.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wcb7v"]
-radius = 0.0130647
+radius = 1.0
 
 [node name="Fly" type="CharacterBody3D" groups=["Fly"]]
-transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 collision_mask = 3
 script = ExtResource("1_shvp3")
 max_speed = 5.0
@@ -102,12 +101,12 @@ mesh = SubResource("BoxMesh_iwtog")
 skeleton = NodePath("../..")
 
 [node name="wing1" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0.00446405)
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, -0.244614)
 mesh = SubResource("PlaneMesh_nv3a8")
 skeleton = NodePath("../..")
 
 [node name="wing2" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, -0.00401761)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0.235257)
 mesh = SubResource("PlaneMesh_nv3a8")
 skeleton = NodePath("../..")
 

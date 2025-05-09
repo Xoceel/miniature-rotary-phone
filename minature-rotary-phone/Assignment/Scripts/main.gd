@@ -12,8 +12,8 @@ const FLY = preload("res://Assignment/Scenes/fly.tscn")
 
 const FROG = preload("res://Assignment/Scenes/frog.tscn")
 @export var maximum_refresh_rate : int = 90
-@export var frogs = 0
-@export var flies = 0
+@export var frogs = 3
+@export var flies = 10
 @onready var viewport : Viewport = get_viewport()
 @onready var environment : Environment = $WorldEnvironment.environment
 
@@ -65,6 +65,14 @@ func spawn_wildlife():
 		
 		frog.global_position = Vector3(x_rand, 0, z_rand)
 		add_child(frog)
+	for i in range(flies):
+		var fly = FLY.instantiate()
+		var x_rand = randf_range(-5, 5)
+		var z_rand = randf_range(-5, 5)
+		
+		fly.global_position = Vector3(x_rand, 0, z_rand)
+		fly.visible = true
+		add_child(fly)
 
 # Handle OpenXR session ready
 func _on_openxr_session_begun() -> void:
