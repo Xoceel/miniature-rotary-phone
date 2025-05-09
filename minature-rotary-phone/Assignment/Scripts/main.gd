@@ -70,7 +70,7 @@ func spawn_wildlife():
 		var x_rand = randf_range(-5, 5)
 		var z_rand = randf_range(-5, 5)
 		
-		fly.global_position = Vector3(x_rand, 0, z_rand)
+		fly.global_position = Vector3(x_rand, 1.5, z_rand)
 		fly.visible = true
 		add_child(fly)
 

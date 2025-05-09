@@ -79,7 +79,6 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_xhknk"]
-radius = 0.0286562
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qah4a"]
 radius = 5.0
